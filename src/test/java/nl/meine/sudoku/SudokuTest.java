@@ -129,18 +129,67 @@ public class SudokuTest {
     }
 
     /**
-     * Test of checkcolumn method, of class Sudoku.
+     * Test of checkrow method, of class Sudoku.
      */
     @Test
-    public void testCheckcolumn() {
-        System.out.println("checkcolumn");
+    public void testCheckcolumnCorrect() {
+        System.out.println("checkrow");
+
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[1][0] = 2;
+        grid[1][1] = 1;
+
         int column = 0;
-        Sudoku instance = null;
-        boolean expResult = false;
+        Sudoku instance = new Sudoku(grid);
+        boolean expResult = true;
+        
         boolean result = instance.checkcolumn(column);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+ 
+    /**
+     * Test of checkrow method, of class Sudoku.
+     */
+    @Test
+    public void testCheckcolumnCorrectIncompletecolumn() {
+        System.out.println("checkrow");
+
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 0;
+        grid[1][0] = 2;
+        grid[1][1] = 1;
+
+        int row = 0;
+        Sudoku instance = new Sudoku(grid);
+        boolean expResult = true;
+        
+        boolean result = instance.checkcolumn(row);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of checkrow method, of class Sudoku.
+     */
+    @Test
+    public void testCheckcolumnIncorrect() {
+        System.out.println("checkrow");
+
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[1][0] = 1;
+        grid[1][1] = 2;
+
+        int column = 0;
+        Sudoku instance = new Sudoku(grid);
+        boolean expResult = false;
+        
+        boolean result = instance.checkcolumn(column);
+        assertEquals(expResult, result);
+    }
+
     
 }

@@ -44,6 +44,17 @@ public class Sudoku {
     }
     
     protected boolean checkcolumn(int column){
-        return false;
+        Set<Integer> nums = new HashSet<>(maxNum);
+        for (int i = 0; i < grid.length; i++) {
+            int[] row = grid[i];
+            int num = row[column];
+            if(! nums.contains(num) || num == 0){
+                nums.add(num);
+            }else{
+                return false;
+            }
+            
+        }
+        return true;
     }
 }

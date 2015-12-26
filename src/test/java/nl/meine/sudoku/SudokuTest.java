@@ -19,22 +19,22 @@ import static org.junit.Assert.*;
  * @author Meine Toonen <meinetoonen@b3partners.nl>
  */
 public class SudokuTest {
-    
+
     public SudokuTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -59,7 +59,7 @@ public class SudokuTest {
 
         Sudoku instance = new Sudoku(new int[2][2]);
         Set<Sudoku> expResult = new HashSet<>();
-        
+
         expResult.add(new Sudoku(grid2));
         expResult.add(new Sudoku(grid1));
 
@@ -85,11 +85,11 @@ public class SudokuTest {
         int row = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = true;
-        
+
         boolean result = instance.checkrow(row);
         assertEquals(expResult, result);
     }
- 
+
     /**
      * Test of checkrow method, of class Sudoku.
      */
@@ -106,11 +106,11 @@ public class SudokuTest {
         int row = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = true;
-        
+
         boolean result = instance.checkrow(row);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of checkrow method, of class Sudoku.
      */
@@ -127,7 +127,7 @@ public class SudokuTest {
         int row = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = false;
-        
+
         boolean result = instance.checkrow(row);
         assertEquals(expResult, result);
     }
@@ -148,11 +148,11 @@ public class SudokuTest {
         int column = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = true;
-        
-        boolean result = instance.checkcolumn (column);
+
+        boolean result = instance.checkcolumn(column);
         assertEquals(expResult, result);
     }
- 
+
     /**
      * Test of checkrow method, of class Sudoku.
      */
@@ -169,11 +169,11 @@ public class SudokuTest {
         int row = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = true;
-        
+
         boolean result = instance.checkcolumn(row);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of checkrow method, of class Sudoku.
      */
@@ -190,7 +190,7 @@ public class SudokuTest {
         int column = 0;
         Sudoku instance = new Sudoku(grid);
         boolean expResult = false;
-        
+
         boolean result = instance.checkcolumn(column);
         assertEquals(expResult, result);
     }
@@ -201,7 +201,7 @@ public class SudokuTest {
     @Test
     public void testIsCorrectShouldBeIncorrect() {
         System.out.println("isCorrect");
-    
+
         int[][] grid = new int[2][2];
         grid[0][0] = 1;
         grid[0][1] = 2;
@@ -213,14 +213,14 @@ public class SudokuTest {
         boolean expected = false;
         assertEquals(expected, actual);
     }
-    
-        /**
+
+    /**
      * Test of isCorrect method, of class Sudoku.
      */
     @Test
     public void testIsCorrectShouldBeIncorrect2() {
         System.out.println("isCorrect");
-    
+
         int[][] grid = new int[2][2];
         grid[0][0] = 1;
         grid[0][1] = 2;
@@ -232,14 +232,14 @@ public class SudokuTest {
         boolean expected = false;
         assertEquals(expected, actual);
     }
-    
+
     /**
      * Test of isCorrect method, of class Sudoku.
      */
     @Test
     public void testIsCorrectShouldBeCorrect() {
         System.out.println("isCorrect");
-    
+
         int[][] grid = new int[2][2];
         grid[0][0] = 1;
         grid[0][1] = 2;
@@ -252,5 +252,20 @@ public class SudokuTest {
         assertEquals(expected, actual);
     }
 
-    
+    @Test
+    public void testSubgridlengths() {
+
+        int[][] gridCor1 = new int[4][4];
+        int[][] gridCor2 = new int[9][9];
+        Sudoku s1 = new Sudoku(gridCor1);
+        assertEquals(2, s1.getSubgridLength());
+        Sudoku s2 = new Sudoku(gridCor2);
+        assertEquals(3, s2.getSubgridLength());
+
+        int[][] gridIncCor1 = new int[2][2];
+        Sudoku s3 = new Sudoku(gridIncCor1);
+        assertEquals(-1, s3.getSubgridLength());
+
+    }
+
 }

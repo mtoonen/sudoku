@@ -6,7 +6,6 @@
 package nl.meine.sudoku;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,12 +17,17 @@ public class Sudoku {
     // The actual grid of the sudoku. First array is row, second is column
     private int [][] grid;
     
+    private int subgridLength = -1;
     private int maxNum = -1;
     
     
     public Sudoku (int [][] grid){
         this.grid = grid;
         this.maxNum = this.grid.length;
+        double maxnumSqrt = Math.sqrt(maxNum);
+        if ((maxnumSqrt == Math.floor(maxnumSqrt)) && !Double.isInfinite(maxnumSqrt)) {
+            subgridLength = (int)maxnumSqrt;
+        }
     }
     
     protected void solve(Set<Sudoku> solutions){
@@ -175,4 +179,10 @@ public class Sudoku {
         }
         return false;
     }
+
+    public int getSubgridLength() {
+        return subgridLength;
+    }
+    
+    
 }

@@ -26,8 +26,64 @@ public class Sudoku {
     }
     
     protected Sudoku[] solve(){
+        /*
+        solve:
+            Vind 0
+                zo ja,
+                    maak een Sudoku object met alle mogelijke waardes en check if correct
+                        zo ja, doe solve op nieuwe object
+                        zo nee, discard
+                    ga verder met volgende 0
+                zo nee, check if correct
+                    zo ja, voeg toe aan oplossingen
+                    zo nee, discard
+        
+        */
+        for (int i = 0; i < grid.length; i++) {
+            int[] row = grid[i];
+            for (int j = 0; j < row.length; j++) {
+                int column = row[j];
+                if(column == 0){
+                    
+                }
+            }
+        }
+        
         Sudoku[] s = new Sudoku[0];
         return s;
+    }
+    
+    protected boolean isCorrect(){
+        for (int i = 0; i < grid.length; i++) {
+            int[] row = grid[i];
+            Set<Integer> nums = new HashSet<>(maxNum);
+            for (int j = 0; j < row.length; j++) {
+                int num = row[j];
+                if(num == 0){
+                    return false;
+                }else if(nums.contains(num)){
+                    return false;
+                }else{
+                    nums.add(num);
+                }
+            }
+        }
+        for (int col = 0; col < maxNum; col++) {
+            Set<Integer> nums = new HashSet<>(maxNum);
+            for (int i = 0; i < grid.length; i++) {
+                int num = grid[i][col];
+                if(num == 0 ){
+                    return false;
+                }else if(nums.contains(num)){
+                    return false;
+                }else{
+                    nums.add(num);
+                }
+                
+            }
+            
+        }
+        return true;
     }
     
     protected boolean checkrow(int rownum){

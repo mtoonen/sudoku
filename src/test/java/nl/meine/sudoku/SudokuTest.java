@@ -145,7 +145,7 @@ public class SudokuTest {
         Sudoku instance = new Sudoku(grid);
         boolean expResult = true;
         
-        boolean result = instance.checkcolumn(column);
+        boolean result = instance.checkcolumn (column);
         assertEquals(expResult, result);
     }
  
@@ -189,6 +189,63 @@ public class SudokuTest {
         
         boolean result = instance.checkcolumn(column);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isCorrect method, of class Sudoku.
+     */
+    @Test
+    public void testIsCorrectShouldBeIncorrect() {
+        System.out.println("isCorrect");
+    
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[1][0] = 1;
+        grid[1][1] = 2;
+
+        Sudoku instance = new Sudoku(grid);
+        boolean actual = instance.isCorrect();
+        boolean expected = false;
+        assertEquals(expected, actual);
+    }
+    
+        /**
+     * Test of isCorrect method, of class Sudoku.
+     */
+    @Test
+    public void testIsCorrectShouldBeIncorrect2() {
+        System.out.println("isCorrect");
+    
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[1][0] = 0;
+        grid[1][1] = 2;
+
+        Sudoku instance = new Sudoku(grid);
+        boolean actual = instance.isCorrect();
+        boolean expected = false;
+        assertEquals(expected, actual);
+    }
+    
+    /**
+     * Test of isCorrect method, of class Sudoku.
+     */
+    @Test
+    public void testIsCorrectShouldBeCorrect() {
+        System.out.println("isCorrect");
+    
+        int[][] grid = new int[2][2];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[1][0] = 2;
+        grid[1][1] = 1;
+
+        Sudoku instance = new Sudoku(grid);
+        boolean actual = instance.isCorrect();
+        boolean expected = true;
+        assertEquals(expected, actual);
     }
 
     

@@ -6,6 +6,7 @@
 package nl.meine.sudoku;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,7 +26,7 @@ public class Sudoku {
         this.maxNum = this.grid.length;
     }
     
-    protected Sudoku[] solve(){
+    protected void solve(Set<Sudoku> solutions){
         /*
         solve:
             Vind 0
@@ -39,18 +40,24 @@ public class Sudoku {
                     zo nee, discard
         
         */
-        for (int i = 0; i < grid.length; i++) {
-            int[] row = grid[i];
-            for (int j = 0; j < row.length; j++) {
-                int column = row[j];
-                if(column == 0){
-                    
+        for (int rownum = 0; rownum < grid.length; rownum++) {
+            int[] row = grid[rownum];
+            for (int colnum = 0; colnum < row.length; colnum++) {
+                int curNum = row[colnum];
+                if(curNum == 0){
+                    for (int num = 1; num <= maxNum; num++) {
+                        int [][] clone =cloneArray(grid);
+                        clone[rownum][colnum] = num;
+                        Sudoku s = new Sudoku(clone);
+                        s.solve(solutions);
+                    }
                 }
             }
         }
         
-        Sudoku[] s = new Sudoku[0];
-        return s;
+        if(isCorrect()){
+            solutions.add(this);
+        }
     }
     
     protected boolean isCorrect(){
@@ -112,5 +119,60 @@ public class Sudoku {
             
         }
         return true;
+    }
+    
+    /**
+     * Clones the provided array
+     *
+     * @param src
+     * @return a new clone of the provided array
+     */
+    public static int[][] cloneArray(int[][] src) {
+        int length = src.length;
+        int[][] target = new int[length][src[0].length];
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(src[i], 0, target[i], 0, src[i].length);
+        }
+        return target;
+    }
+    
+    @Override
+    public String toString(){
+        StringBuilder allrows = new StringBuilder();
+        for (int i = 0; i < grid.length; i++) {
+            int[] row = grid[i];
+            for (int j = 0; j < row.length; j++) {
+                int num = row[j];
+                allrows.append(num);
+            }
+        }
+        return allrows.toString();
+    }
+    
+    @Override
+    public int hashCode() {
+        String allrows = toString();
+        final int prime = 31;
+        int result = 1;
+        result = prime * result ;
+        result = prime * result + ((allrows == null) ? 0 : allrows.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        if (this.toString().equals(obj.toString())) {
+            return true;
+        }
+        return false;
     }
 }

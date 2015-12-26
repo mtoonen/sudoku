@@ -5,6 +5,8 @@
  */
 package nl.meine.sudoku;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,13 +58,15 @@ public class SudokuTest {
         grid2[1][1] = 2;
 
         Sudoku instance = new Sudoku(new int[2][2]);
+        Set<Sudoku> expResult = new HashSet<>();
+        
+        expResult.add(new Sudoku(grid2));
+        expResult.add(new Sudoku(grid1));
 
-        Sudoku[] expResult = new Sudoku[2];
-        expResult[0] = new Sudoku(grid1);
-        expResult[1] = new Sudoku(grid2);
-
-        Sudoku[] result = instance.solve();
-        assertArrayEquals(expResult, result);
+        Set<Sudoku> result = new HashSet<>();
+        instance.solve(result);
+        assertEquals(expResult.size(), result.size());
+        assertEquals(expResult, result);
     }
 
     /**

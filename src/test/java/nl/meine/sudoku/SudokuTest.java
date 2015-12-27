@@ -268,4 +268,47 @@ public class SudokuTest {
 
     }
 
+    /**
+     * Test of cloneArray method, of class Sudoku.
+     */
+    @Test
+    public void testCloneArray() {
+        System.out.println("cloneArray");
+        int[][] src = null;
+        int[][] expResult = null;
+        int[][] result = Sudoku.cloneArray(src);
+        assertArrayEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testCheckSubgrid(){
+        
+        int[][] grid = new int[4][4];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[0][2] = 3;
+        grid[0][3] = 4;
+        
+        grid[1][0] = 4;
+        grid[1][1] = 3;
+        grid[1][2] = 2;
+        grid[1][3] = 1;
+        
+        grid[2][0] = 2;
+        grid[2][1] = 4;
+        grid[2][2] = 1;
+        grid[2][3] = 3;
+        
+        grid[3][0] = 3;
+        grid[3][1] = 1;
+        grid[3][2] = 4;
+        grid[3][3] = 2;
+
+        Sudoku instance = new Sudoku(grid);
+        boolean actual = instance.isCorrect();
+        boolean expected = true;
+        assertEquals(expected, actual);
+    }
 }

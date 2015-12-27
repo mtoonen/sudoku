@@ -125,6 +125,10 @@ public class Sudoku {
         return true;
     }
     
+    protected boolean checkSubgrid(int column, int row) throws NoSuchMethodException{
+        throw new NoSuchMethodException("Not yet implemented");
+    }
+    
     /**
      * Clones the provided array
      *
@@ -183,6 +187,5 @@ public class Sudoku {
     public int getSubgridLength() {
         return subgridLength;
     }
-    
     
 }

@@ -126,7 +126,18 @@ public class Sudoku {
     }
     
     protected boolean checkSubgrid(int column, int row) throws NoSuchMethodException{
-        throw new NoSuchMethodException("Not yet implemented");
+        Set<Integer> nums = new HashSet<>(maxNum);
+        for (int rownum = row*subgridLength; rownum < (subgridLength *(row+1)); rownum++) {
+            for (int colnum = column*subgridLength; colnum < (subgridLength * (column+1)); colnum++) {
+                int num = grid[rownum][colnum];
+                if(!nums.contains(num) || num == 0){
+                    nums.add(num);
+                }else{
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     /**

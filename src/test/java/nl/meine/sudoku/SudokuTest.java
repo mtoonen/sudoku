@@ -283,7 +283,7 @@ public class SudokuTest {
     }
 
     @Test
-    public void testCheckSubgrid(){
+    public void testCheckSubgridCorrect() throws NoSuchMethodException{
         
         int[][] grid = new int[4][4];
         grid[0][0] = 1;
@@ -307,8 +307,45 @@ public class SudokuTest {
         grid[3][3] = 2;
 
         Sudoku instance = new Sudoku(grid);
-        boolean actual = instance.isCorrect();
-        boolean expected = true;
-        assertEquals(expected, actual);
+        int length = instance.getSubgridLength();
+        for (int row = 0; row < length; row++) {
+            for (int col = 0; col < length; col++) {
+                assertTrue(instance.checkSubgrid(row, col));
+            }
+
+        }
+    }
+
+    @Test
+    public void testCheckSubgridIncorrect() throws NoSuchMethodException{
+
+        int[][] grid = new int[4][4];
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[0][2] = 3;
+        grid[0][3] = 4;
+
+        grid[1][0] = 4;
+        grid[1][1] = 1;
+        grid[1][2] = 2;
+        grid[1][3] = 3;
+
+        grid[2][0] = 3;
+        grid[2][1] = 4;
+        grid[2][2] = 1;
+        grid[2][3] = 2;
+
+        grid[3][0] = 4;
+        grid[3][1] = 2;
+        grid[3][2] = 3;
+        grid[3][3] = 1;
+
+        Sudoku instance = new Sudoku(grid);
+        int length = instance.getSubgridLength();
+        for (int row = 0; row < length; row++) {
+            for (int col = 0; col < length; col++) {
+                assertFalse(instance.checkSubgrid(row, col));
+            }
+        }
     }
 }

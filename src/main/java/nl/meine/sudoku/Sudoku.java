@@ -92,7 +92,16 @@ public class Sudoku {
                 }
                 
             }
-            
+        }
+
+        for (int row = 0; row < subgridLength; row++) {
+            for (int col = 0; col < subgridLength; col++) {
+                if(!checkSubgrid(col, row)){
+                    return false;
+                }
+
+            }
+
         }
         return true;
     }
@@ -125,7 +134,7 @@ public class Sudoku {
         return true;
     }
     
-    protected boolean checkSubgrid(int column, int row) throws NoSuchMethodException{
+    protected boolean checkSubgrid(int column, int row){
         Set<Integer> nums = new HashSet<>(maxNum);
         for (int rownum = row*subgridLength; rownum < (subgridLength *(row+1)); rownum++) {
             for (int colnum = column*subgridLength; colnum < (subgridLength * (column+1)); colnum++) {

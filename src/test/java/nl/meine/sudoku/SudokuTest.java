@@ -212,6 +212,7 @@ public class SudokuTest {
         boolean actual = instance.isCorrect();
         boolean expected = false;
         assertEquals(expected, actual);
+        fail(); // expand test for subgrids
     }
 
     /**
@@ -231,6 +232,7 @@ public class SudokuTest {
         boolean actual = instance.isCorrect();
         boolean expected = false;
         assertEquals(expected, actual);
+        fail(); // expand test for subgrids
     }
 
     /**
@@ -250,6 +252,7 @@ public class SudokuTest {
         boolean actual = instance.isCorrect();
         boolean expected = true;
         assertEquals(expected, actual);
+        fail(); // expand test for subgrids
     }
 
     @Test
